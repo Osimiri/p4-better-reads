@@ -40,8 +40,8 @@ def author():
 
     return response 
 
-@app.route('/users', methods = ['GET'])
-def genre():
+@app.route('/genres', methods = ['GET'])
+def genres():
     genres = Genre.query.all()
     genres_dict =  [genre.to_dict() for genre in genres]
 
@@ -53,7 +53,7 @@ def genre():
     return response 
 
 @app.route('/users', methods = ['GET'])
-def genre():
+def users():
     users = User.query.all()
     users_dict =  [user.to_dict() for user in users]
 
@@ -65,7 +65,7 @@ def genre():
     return response 
 
 @app.route('/books', methods = ['GET'])
-def genre():
+def books():
     books = Book.query.all()
     books_dict =  [book.to_dict() for book in books]
 
@@ -77,7 +77,7 @@ def genre():
     return response 
 
 @app.route('/userbooks', methods = ['GET'])
-def genre():
+def userbooks():
     user_books = UserBook.query.all()
     user_books_dict =  [user_book.to_dict() for user_book in user_books]
 

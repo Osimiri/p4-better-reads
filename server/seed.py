@@ -3,15 +3,101 @@
 # Standard library imports
 from random import randint, choice as rc
 
+
 # Remote library imports
 from faker import Faker
-
+from faker.providers import isbn, person 
 # Local imports
 from app import app
-from models import db
+from models import Author, Genre, User, UserBook, Book, db
+
+fake = Faker()
+
+
+def make_author():
+
+    Author.query.delete()
+
+    authors = ["Branden Sanderson", "James Patterson", "Ruth Benedict", 
+    
+    "bell hooks", "Laura Purcell", "Action Bronson", "Mark Twain", "Brent Weeks", 
+    "Andrew Loomis", "Coleen Hoover", "Chris Bohjalian", "Chuck Tingle", "Blanca Lepinska",
+    "Khaled Hosseini", "Chimamanda Ngozi Adichie", "Fonda Lee", "Lucy Maud Montgomery",
+    "Hanya Yanagihara", "Toshikazu Kawaguchi", "Susan Hill", "Agatha Christie", "Mary Shelley",
+    "Neal Stevenson"]
+
+
+    author_obj = []
+
+    for i in range(len(authors)):
+    # for i in range(10):
+    
+        author = Author(
+            full_name= authors[i],
+            biography= fake.text()
+        )
+
+        author_obj.append(author)
+
+
+    
+    db.session.add_all(author_obj)
+    db.session.commit()
+
+
+
+def make_book():
+    
+    Book.query.delete()
+
+    books_obj = []
+
+    for i in range(23):
+    # for i in range(10):
+    
+        book = Book(
+            title= fake.name(),
+            price= randint() ,
+            isbn= fake.isbn(),
+            likes= randint(),
+            genre_id= randint(),
+            # author_id= randint(1,23)
+            author_id= i
+        )
+
+        books_obj.append(book)
+    
+    db.session.add_all(books_obj)
+    db.session.commit()
+
+def make_user():
+    
+    User.query.delete()
+
+    users_obj = []
+
+    for i in range(23):
+    # for i in range(10):
+    
+        user = user(
+            password= randint() ,
+            username= fake.person(),
+            full_name= fake.name(),   
+        )
+
+        users_obj.append(user)
+    
+    db.session.add_all(users_obj)
+    db.session.commit()
+
+
+
+
 
 if __name__ == '__main__':
     fake = Faker()
     with app.app_context():
         print("Starting seed...")
         # Seed code goes here!
+        make_author()
+        make_book()
