@@ -6,25 +6,29 @@ from random import randint, choice as rc
 
 # Remote library imports
 from faker import Faker
-from faker.providers import  person   
+# from faker.providers import  person, simple_profile, isbn   
 # Local imports
 from app import app
 from models import Author, Genre, User, UserBook, Book, db
 
 fake = Faker()
+# fake.add_provider(simple_profile)
+# fake.add_provider(isbn)
 
-def make_Genre():
+
+def make_genre():
     
     Genre.query.delete()
 
-    genre_obj = ['Drama', 'Fable', 'Fiction', 'Folklore', 'Historical Fiction', 'Horror', 'Mystery',
+    genres = ['Drama', 'Fable', 'Fiction', 'Folklore', 'Historical Fiction', 'Horror', 'Mystery',
     'Poetry', 'Science Fiction']
 
-    for i in range(len(genre_obj)):
+    genre_obj = []
+
+    for i in range(len(genres)):
     # for i in range(10):
         genre = Genre(
-            genre = genre_obj[i] ,
-               
+            genre = genres[i]         
         )
 
         genre_obj.append(genre)
@@ -126,10 +130,6 @@ def make_users_books():
     db.session.add_all(users_books_obj)
     db.session.commit()
 
-    
-
-
-
 
 if __name__ == '__main__':
     fake = Faker()
@@ -140,3 +140,4 @@ if __name__ == '__main__':
         make_book()
         make_users_books()
         make_user()
+        make_genre()
