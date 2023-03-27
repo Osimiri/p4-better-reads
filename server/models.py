@@ -48,7 +48,9 @@ class User(db.Model, SerializerMixin):
     created_at = db.Column(db.DateTime, server_default = db.func.now())
     updated_at = db.Column(db.DateTime, onupdate = db.func.now())
 
-    liked_books = db.Column(db.Integer, db.ForeignKey("books.id"))
+
+    liked_books = db.relationship("UserBook", backref = "user")
+
 class UserBook(db.Model, SerializerMixin):
     __tablename__ = 'user_books'
 

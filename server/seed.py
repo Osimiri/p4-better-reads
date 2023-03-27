@@ -6,7 +6,7 @@ from random import randint, choice as rc
 
 # Remote library imports
 from faker import Faker
-from faker.providers import isbn, person, simple_profile    
+from faker.providers import  person   
 # Local imports
 from app import app
 from models import Author, Genre, User, UserBook, Book, db
@@ -75,9 +75,9 @@ def make_book():
         book = Book(
             title= fake.name(),
             price= randint(0,999),
-            isbn= fake.isbn(),
-            likes= randint(),
-            genre_id= randint(),
+          # isbn= fake.isbn(),
+            likes= randint(1,69),        
+            genre_id= randint(1,9),
             # author_id= randint(1,23)
             author_id= i
         )
@@ -97,8 +97,8 @@ def make_user():
     # for i in range(10):
     
         user = User(
-            password= randint() ,
-            username= fake.person(),
+            password= randint(1,23) ,
+            username= fake.name(),
             full_name= fake.name(),   
         )
 
@@ -125,6 +125,8 @@ def make_users_books():
     
     db.session.add_all(users_books_obj)
     db.session.commit()
+
+    
 
 
 
