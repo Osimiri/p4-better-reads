@@ -6,20 +6,37 @@ from random import randint, choice as rc
 
 # Remote library imports
 from faker import Faker
-from faker.providers import isbn, person 
+from faker.providers import isbn, person, simple_profile    
 # Local imports
 from app import app
 from models import Author, Genre, User, UserBook, Book, db
 
 fake = Faker()
 
+def make_Genre():
+    
+    Genre.query.delete()
+
+    genre_obj = ['Drama', 'Fable', 'Fiction', 'Folklore', 'Historical Fiction', 'Horror', 'Mystery',
+    'Poetry', 'Science Fiction']
+
+    for i in range(len(genre_obj)):
+    # for i in range(10):
+        genre = Genre(
+            genre = genre_obj[i] ,
+               
+        )
+
+        genre_obj.append(genre)
+    
+    db.session.add_all(genre_obj)
+    db.session.commit()
 
 def make_author():
 
     Author.query.delete()
 
     authors = ["Branden Sanderson", "James Patterson", "Ruth Benedict", 
-    
     "bell hooks", "Laura Purcell", "Action Bronson", "Mark Twain", "Brent Weeks", 
     "Andrew Loomis", "Coleen Hoover", "Chris Bohjalian", "Chuck Tingle", "Blanca Lepinska",
     "Khaled Hosseini", "Chimamanda Ngozi Adichie", "Fonda Lee", "Lucy Maud Montgomery",
@@ -57,7 +74,7 @@ def make_book():
     
         book = Book(
             title= fake.name(),
-            price= randint() ,
+            price= randint(0,999),
             isbn= fake.isbn(),
             likes= randint(),
             genre_id= randint(),
@@ -79,7 +96,7 @@ def make_user():
     for i in range(23):
     # for i in range(10):
     
-        user = user(
+        user = User(
             password= randint() ,
             username= fake.person(),
             full_name= fake.name(),   
@@ -90,6 +107,24 @@ def make_user():
     db.session.add_all(users_obj)
     db.session.commit()
 
+def make_users_books():
+    
+    User.query.delete()
+
+    users_books_obj = []
+
+    for i in range(23):
+    # for i in range(10):
+    
+        user_books = UserBook(
+            user_id = randint(1,23),
+            book_id = randint(1,23)  
+        )
+
+        users_books_obj.append(user_books)
+    
+    db.session.add_all(users_books_obj)
+    db.session.commit()
 
 
 
@@ -101,3 +136,5 @@ if __name__ == '__main__':
         # Seed code goes here!
         make_author()
         make_book()
+        make_users_books()
+        make_user()

@@ -77,3 +77,4 @@ class Book(db.Model, SerializerMixin):
     
     genre_id = db.Column(db.Integer, db.ForeignKey("genres.id"))
     author_id = db.Column(db.Integer, db.ForeignKey('authors.id'))
+
