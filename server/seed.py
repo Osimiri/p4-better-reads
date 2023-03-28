@@ -6,14 +6,14 @@ from random import randint, choice as rc
 
 # Remote library imports
 from faker import Faker
-# from faker.providers import  person, simple_profile, isbn   
+from faker.providers import  person, profile, isbn   
 # Local imports
 from app import app
 from models import Author, Genre, User, UserBook, Book, db
 
 fake = Faker()
-# fake.add_provider(simple_profile)
-# fake.add_provider(isbn)
+fake.add_provider(profile)
+fake.add_provider(isbn)
 
 
 def make_genre():
