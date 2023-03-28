@@ -45,7 +45,7 @@ def make_author():
     "Andrew Loomis", "Coleen Hoover", "Chris Bohjalian", "Chuck Tingle", "Blanca Lepinska",
     "Khaled Hosseini", "Chimamanda Ngozi Adichie", "Fonda Lee", "Lucy Maud Montgomery",
     "Hanya Yanagihara", "Toshikazu Kawaguchi", "Susan Hill", "Agatha Christie", "Mary Shelley",
-    "Neal Stevenson"]
+    "Neal Stephenson"]
 
 
     author_obj = []
