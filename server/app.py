@@ -27,7 +27,7 @@ api = Api(app)
 
 @app.route('/')
 def index():
-    return '<h1>Welcome to Better Reads</h1>'
+    return '<h1>Welcome To The Better Reads Better Backend</h1>'
 
 class Authors(Resource):
     def get(self):
@@ -56,11 +56,12 @@ class Authors(Resource):
         )
         return response
         
-api.add_resource(Authors, '/authors')
+api.add_resource(Authors, '/authors')     
+
 
 class AuthorsById(Resource):
     def get(self,id):
-        author = Author.query.filter(id = id).first()
+        author = Author.query.filter(id == id).first()
         author_dictionary= author.to_dict()
 
         if not author:
@@ -75,6 +76,7 @@ class AuthorsById(Resource):
             )
         
 api.add_resource(AuthorsById, '/authors/<int:id>')
+
 
 class Genres(Resource):
     def get(self):
@@ -118,9 +120,11 @@ class Users(Resource):
         return response
 
 api.add_resource(Users, '/users')
+
+
 class UsersById(Resource):
     def get(self,id):
-        user = User.query.filter(id = id).first()
+        user = User.query.filter(id == id).first()
         user_dictionary = user.to_dict()
         
         if not user: 
@@ -133,7 +137,9 @@ class UsersById(Resource):
                 jsonify(user_dictionary),
                 200
             )
-api.add_resource(UsersById, '/users/<int:id>')
+api.add_resource(UsersById, '/users/<int:id>')     
+
+
 class Books(Resource):
     def get(self):
         books = Book.query.all()
@@ -161,7 +167,8 @@ class Books(Resource):
         )
         return response
 
-api.add_resource(Books, '/books')
+api.add_resource(Books, '/books') #recursion error 
+
 
 class BooksById(Resource):
     def get(self, id):
@@ -179,7 +186,8 @@ class BooksById(Resource):
                 200
             )
 
-api.add_resource(BooksById, '/books/<int:id>')
+api.add_resource(BooksById, '/books/<int:id>') #recursion error 
+
 
 class UserBooks(Resource):
     def get(self):
@@ -192,7 +200,7 @@ class UserBooks(Resource):
         )
         return response 
 
-api.add_resource(UserBooks, '/user_books')
+api.add_resource(UserBooks, '/user_books') #recursion 
 
 
 if __name__ == '__main__':

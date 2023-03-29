@@ -38,11 +38,12 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} /> 
-          <Route path="/books" element={<BookPage />} /> 
-          <Route path="/authors" element={<AuthorPage />} /> 
+          <Route path="/books" element={<BookPage books = {books} />} /> 
+          <Route path="/authors" element={<AuthorPage authors = {authors}/>} /> 
           <Route path="/profile" element={<Profile />} />
 
         </Routes>
+
 
       </div>
   )

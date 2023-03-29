@@ -71,7 +71,8 @@ def make_author():
 def make_book():
     
     Book.query.delete()
-    
+    # Book.query.filter_by(id=).first()
+    # len(Book.query.get(1).liked_books), author_id="1"
     # Book(title="", price="", isbn="", likes="0", author_id="", genre_id="", image = "" )
     books_obj = [
     Book(title="The Way of Kings", price="8.88", isbn="9780765365279", likes="0", author_id="1", genre_id="9", image = "https://d3525k1ryd2155.cloudfront.net/h/014/102/1299102014.0.x.jpg"),
@@ -161,6 +162,12 @@ def make_users_books():
     db.session.add_all(users_books_obj)
     db.session.commit()
 
+    for book in Book.query.all():
+        book.likes = len(book.liked_books)
+        
+        db.session.add(book)
+        db.session.commit()
+
 
 if __name__ == '__main__':
     fake = Faker()
@@ -172,3 +179,7 @@ if __name__ == '__main__':
         make_user()
         make_genre()
         make_users_books()
+        book = db.session.get(Book,1)
+        print(book)
+        print(len(book.liked_books))
+        # print(len(Book.query.get(1).liked_books))

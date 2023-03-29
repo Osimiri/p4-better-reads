@@ -16,7 +16,7 @@ from config import db
 class Author(db.Model, SerializerMixin):
     __tablename__ = 'authors'
 
-    # serialize_rules = ()
+    serialize_rules = ('-books.author','-books.liked_books')
 
     id = db.Column(db.Integer, primary_key=True)
     full_name = db.Column(db.String)
@@ -57,7 +57,6 @@ class UserBook(db.Model, SerializerMixin):
     serialize_rules = ('-user.liked_books', '-book.liked_books')
 
     id = db.Column(db.Integer, primary_key=True)
-    
     created_at = db.Column(db.DateTime, server_default = db.func.now())
     updated_at = db.Column(db.DateTime, onupdate = db.func.now())
     
@@ -67,7 +66,7 @@ class UserBook(db.Model, SerializerMixin):
 class Book(db.Model, SerializerMixin):
     __tablename__ = 'books'
 
-    serialize_rules = ('-user_books', "-liked_books.book", '-liked_books.user')
+    serialize_rules = ('-user_books', "-liked_books.book", '-liked_books.user', '-author.books', '-author.biography')
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String)
@@ -82,4 +81,5 @@ class Book(db.Model, SerializerMixin):
     author_id = db.Column(db.Integer, db.ForeignKey('authors.id'))
 
     liked_books = db.relationship("UserBook", backref = "book")
+
 
