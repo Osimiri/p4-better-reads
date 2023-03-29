@@ -41,7 +41,7 @@ function App() {
           <Route path="/books" element={<BookPage />} /> 
           <Route path="/authors" element={<AuthorPage />} /> 
           <Route path="/profile" element={<Profile />} />
-          
+
         </Routes>
 
       </div>
