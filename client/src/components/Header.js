@@ -23,6 +23,9 @@ function Header() {
             <NavLink exact to="/profile" activeClassName="active-nav-link" className="nav-btn">
             <span>Profile</span>
             </NavLink>
+            <NavLink exact to="/submit" activeClassName="active-nav-link" className="nav-btn">
+            <span>Submit</span>
+            </NavLink>
             </div>
         </nav>
 

@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 
-function Book({title, price, likes, genre_id, author_id}) {
+function Book({title, price, likes, genre, author, image}) {
+  // console.log(author)
     return (
-      <div>
+      <li>
         <h2>{title}</h2>
+        <img src = {image} class='bookImage'/>
         <p>Price: {price}</p>
         <p>Likes: {likes}</p>
-        <p>Genre ID: {genre_id}</p>
-        <p>Author ID: {author_id}</p>
-      </div>
+        {genre && <p>Genre: {genre}</p> }
+        <p>Author: {author}</p>
+      </li>
     );
   }
 

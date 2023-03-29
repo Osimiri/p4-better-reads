@@ -8,6 +8,7 @@ import Header from "../components/Header";
 import Home from "../components/Home";
 import Profile from "../components/Profile";
 import User from "../components/User";
+import Submit from "../components/Submit";
 
 
 
@@ -15,22 +16,40 @@ function App() {
   
   const [authors, setAuthors] = useState([]);
   const [books, setBooks] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [genres, setGenres] = useState([]);
 
+  // console.log(genres)
+  // console.log(users)
 
   useEffect(() => {
-    fetch("http://localhost:4000/books")       // link for the books DB
+    fetch("/books")       // link for the books DB
       .then((res) => res.json())
       .then((data) => setBooks(data));
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:4000/author/")       // link for the authors DB
+    fetch("/authors")       // link for the authors DB
       .then((res) => res.json())
       .then((data) => setAuthors(data));
   }, []);
   
-   
+  useEffect(() => {
+    fetch("/users")       // link for the authors DB
+      .then((res) => res.json())
+      .then((data) => setUsers(data));
+  }, []);
   
+  useEffect(() => {
+    fetch("/genres")       // link for the authors DB
+      .then((res) => res.json())
+      .then((data) => setGenres(data));
+  }, []);
+  
+  // const usersLikedBooks = users.liked_books?.map((book) => book)
+  // console.log(usersLikedBooks);
+
+
   return(
       <div className="App">
       <Header />
@@ -38,9 +57,10 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Home />} /> 
-          <Route path="/books" element={<BookPage books = {books} />} /> 
+          <Route path="/books" element={<BookPage genre = {genres} books = {books} />} /> 
           <Route path="/authors" element={<AuthorPage authors = {authors}/>} /> 
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile users = {users} />} />
+          <Route path="/submit" element={<Submit genres = {genres} />} />
 
         </Routes>
 

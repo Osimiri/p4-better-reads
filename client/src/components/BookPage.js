@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from "react";
 import Book from "./Book"
 
-function BookPage({books}){
+function BookPage({books, genre}){
   const bookCards = books.map((book)=> {
+    console.log(book)
+    // console.log(genre)
     return (
       <Book
         title={book.title}
         price={book.price}
         isbn={book.isbn}
         likes={book.likes}
-        genre_id={book.genre_id}
-        author_id={book.author_id}
-        image={book.image}
+        genre={book.genre?.genre}
+        author={book.author.full_name}
+        image = {book.image}
       />
     );
   });
+  return <ul>{bookCards}</ul>
 }
 
 export default BookPage;

@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from "react";
 
 
-function Author() {
+function Author({full_name, biography}) {
     return (
-      <div>
-        <h1>Authors</h1>
-        <ul>
-          {authors.map((author) => (
-            <li>
-              <h2>{author.full_name}</h2>
-              <p>{author.biography}</p>
-            </li>
-          ))}
-        </ul>
-      </div>
+        <li>
+            <h2>{full_name}</h2>
+            <p>{biography}</p>
+        </li>
     );
   }
   
   export default Author;
+
+  
