@@ -39,7 +39,7 @@ class Genre(db.Model, SerializerMixin):
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
 
-    # serialize_rules = ()
+    serialize_rules = ('-user_books', "-liked_books.user", '-liked_books.book')
 
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String)
@@ -54,7 +54,7 @@ class User(db.Model, SerializerMixin):
 class UserBook(db.Model, SerializerMixin):
     __tablename__ = 'user_books'
 
-    # serialize_rules = ()
+    serialize_rules = ('-user.liked_books', '-book.liked_books')
 
     id = db.Column(db.Integer, primary_key=True)
     
@@ -67,16 +67,19 @@ class UserBook(db.Model, SerializerMixin):
 class Book(db.Model, SerializerMixin):
     __tablename__ = 'books'
 
-    # serialize_rules = ()
+    serialize_rules = ('-user_books', "-liked_books.book", '-liked_books.user')
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String)
     price = db.Column(db.Float)  #use random float number snap to 2
     isbn = db.Column(db.Integer)
     likes = db.Column(db.Integer)
+    image = db.Column(db.String)
     created_at = db.Column(db.DateTime, server_default = db.func.now())
     updated_at = db.Column(db.DateTime, onupdate = db.func.now())
     
     genre_id = db.Column(db.Integer, db.ForeignKey("genres.id"))
     author_id = db.Column(db.Integer, db.ForeignKey('authors.id'))
+
+    liked_books = db.relationship("UserBook", backref = "book")
 
