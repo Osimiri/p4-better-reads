@@ -1,23 +1,24 @@
 // Form file 
 import React, { useState } from "react";
 import { Form } from "semantic-ui-react";
+// import { useFormik } from "formik";
 
 function Submit({genres}) {
   
-  const [category, setCategoryForm] = useState([]);
+  const [genre, setCategoryForm] = useState([]);
   function handleCategory(e) {
-    setCategoryForm([...category,e.target.textContent]);
+    setCategoryForm([...genre,e.target.textContent]);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(e.target.User.value)
-    console.log(e.target.image.value)
-    console.log(e.target.Description.value)
-    console.log(e.target.category)
+    // console.log(e.target.User.value)
+    // console.log(e.target.image.value)
+    // console.log(e.target.Description.value)
+    // console.log(e.target.category)
     const newPost = {
-      image: e.target.image.value ,
-      category: category ,
+      title: e.target.title.value ,
+      // category: category ,
       user: e.target.User.value ,
       description: e.target.Description.value ,
       likes: 0,
@@ -26,7 +27,7 @@ function Submit({genres}) {
     e.target.reset();
     // handlePost(newPost);
 
-    fetch("http://localhost:4000/pins", {
+    fetch("http://localhost:4000/books", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newPost),
@@ -34,15 +35,34 @@ function Submit({genres}) {
       .then((res) => res.json())
  
   }
+
+  // const formik = useFormik({
+  //   title: "",
+  //   author:'', 
+  //   isbn: '',
+  //   image_url
+  // })
+
   const genreOptions = [
-    {genres}
-    // { key: "ceramic", text: "Ceramic", value: "ceramic" },
-    // { key: "painting", text: "Painting", value: "painting" },
-    // { key: "print", text: "Print", value: "print" },
-    // { key: "carving", text: "Carving", value: "carving" },
-    // { key: "diy", text: "DIY", value: "diy" },
-    // { key: "decor", text: "Decor", value: "decor" },
-    // { key: "mine", text: "I Made This", value: "mine"},
+    // {genres}
+    { key: "drama", text: "Drama", value: "drama" },
+    { key: "fable", text: "Fable", value: "fable" },
+    { key: "fiction", text: "Fiction", value: "fiction" },
+    { key: "folklore", text: "Folklore", value: "folklore" },
+    { key: "historical fiction", text: "Historical Fiction", value: "historical fiction" },
+    { key: "horror", text: "Horror", value: "horror" },
+    { key: "mystery", text: "Mystery", value: "mystery"},
+    { key: "poetry", text: "Poetry", value: "poetry"},
+    { key: "science fiction", text: "Science Fiction", value: "science fiction"},
+    { key: "non-fiction", text: "Non-Fiction", value: "non-fiction"},
+    { key: "biography", text: "Biography", value: "biography"},
+    { key: "autobiography", text: "Autobiography", value: "biography"},
+    { key: "art", text: "Art", value: "art"},
+    { key: "romance", text: "Romance", value: "romance"},
+    { key: "travel", text: "Travel", value: "travel"},
+    { key: "classics", text: "Classics", value: "classics"},
+    { key: "cookbook", text: "Cookbook", value: "Cookbook"},
+    { key: "fantasy", text: "Fantasy", value: "fantasy"},
   ];
 
   return (
@@ -58,28 +78,28 @@ function Submit({genres}) {
             style={{ borderRadius: "25px" }}
           />
           <Form.Input
-          size="small"
+            size="small"
             label="Author"
             placeholder="Who Wrote This?"
             name="User"
             style={{ borderRadius: "25px" }}
           />
           <Form.Input
-          size="small"
+            size="small"
             label="ISBN"
             placeholder="Book ISBN-13#"
             name="User"
             style={{ borderRadius: "25px" }}
           />
           <Form.Input
-          size="small"
+            size="small"
             label="Image"
             placeholder="Image url"
             name="image"
             style={{ borderRadius: "25px" }}
           />
           <Form.Select
-          size="small"
+            size="small"
             label="Genre"
             placeholder="figure it out you little idiot"
             name="genre"
