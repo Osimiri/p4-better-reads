@@ -151,7 +151,6 @@ p{
   button:active {
     transform: scale(0.9);
   }
-
   
 .ui.four.card {
   height: 50%;
@@ -170,8 +169,11 @@ p{
 
 .card-button {
   position: absolute;
-  bottom: 0;
+  bottom: 10px;
+  right: 10px;
 }
+
+
 
 
 .author img {

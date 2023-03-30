@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 function Header() {
     return(
     <header>
-        <div classname = 'nav'style={{ margin: "0 auto" }}>
+        <div classname = 'nav' style={{ margin: "0 auto" }}>
         <nav>
             <div className="Route Buttons">
             <NavLink exact to="/" activeClassName="active-nav-link" className="nav-btn">

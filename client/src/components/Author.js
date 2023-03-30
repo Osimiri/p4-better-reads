@@ -1,13 +1,23 @@
 import React, { useEffect, useState } from "react";
+import { Grid, Image, Header } from 'semantic-ui-react'
 
 
 function Author({full_name, biography, author_image}) {
     return (
-        <li>
-            <h2>{full_name}</h2>
+        <Grid columns = 'equal'>
+        <Grid.Column  >
+            {/* <Header>{full_name}</Header> */}
+            <Image centered bordered size = 'medium' src={author_image} />
+            
+        </Grid.Column>
+        <Grid.Column centered verticalAlign = "middle">
+            <Header>{full_name}</Header>
+            
             <p>{biography}</p>
-            <img src={author_image} />
-        </li>
+        </Grid.Column>
+        </Grid>
+        // <li>
+        // </li>
     );
   }
   
