@@ -1,28 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
 body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: tomato;
-  }
+  background-color: wheat; 
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+  -webkit-font-smoothing: antialiased; 
+  -moz-osx-font-smoothing: grayscale; 
+}
   
-  a {
-    color: firebrick;
-  }
+h1 {
+  text-align: center;
+  font-size: 4.5em;
+  font-family: 'Parisienne', cursive;
+  font-weight: bold;
+  color: rgb(83, 52, 52)
+}
   
+nav {
+  display: flex;
+  align-items: center;
+  background-color: rgb(91, 62, 62);
+  padding: 20px;
+  justify-content: space-between;
+  border-radius: 10px;
+  
+}
+  
+a {
+  color: rgb(222, 194, 194);
+  font-family: 'Parisienne', cursive;
+  font-size: 2.3em;
+  font-weight: bold;
+  align-items: center;
+}
+  
+header nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+header nav a {
+  font-size: 2.5rem;
+  justify-content: center;
+  padding: 20px;
+  
+}
+  
+header div h1 {
+  font-family: 'Parisienne', cursive;
+  font-size : 50px;
+  color: rgb(22, 11, 11);
+}
+
   header {
     padding: 8px;
     background-color: wheat;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
   }
-  
-  header .logo {
+  img.logo {
     height: 100px;
     display: flex;
     align-items: center;
+    opacity: 0.5;
+
   }
   
   header .logo img {
@@ -39,41 +86,95 @@ body {
     }
   }
   
-  header nav {
-    display: flex;
-    align-items: center;
-    padding: 8px;
-  }
-  
-  header nav a {
-    font-size: 1.5rem;
-    padding: 0px 20px;
-  }
-  
-  .bookImage {
-    height: 500px;
-    width: 500px;
-    grid-template-columns: 100px 100px 100px;
-    /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
+img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  margin-bottom: 10px;
 
-  }
+}
 
-  .container {
-    max-width: 800px;
-    margin: 0 auto;
-  }
+content{
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.date{
+  font-size: 15px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+p{
+  font-size: 15px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.header {
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+}
+.description {
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+}
+
+
+
   
-  .card {
-    background-color: wheat;
-    padding: 16px;
-    margin: 16px 0;
-    border-radius: 8px;
-  }
   
   /* form {
     display: flex;
     gap: 8px;
   } */
+  
+  .my-button {
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin: auto;
+  }
+
+  .centered-button {
+    display: block;
+    margin: auto;
+  }
 
   
+  button:hover {
+    background-color: #8e3e3e;
+    transform: scale(1.1);
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  button:active {
+    transform: scale(0.9);
+  }
 
+  
+.ui.four.card {
+  height: 100%;
+  width: 100%;
+}
+
+.card-content-wrapper {
+  position: center;
+  height: 100%;
+}
+
+.card-content {
+  position: relative;
+  height: 40%;
+}
+
+.card-button {
+  position: absolute;
+  bottom: 0;
+}
+
+
+.author img {
+  width: 100px;
+  height: 100px;
+}

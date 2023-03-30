@@ -7,6 +7,7 @@ function AuthorPage({authors}){
             <Author
             full_name = {author.full_name}
             biography = {author.biography}
+            author_image = {author.author_image}
             />
         );
     });

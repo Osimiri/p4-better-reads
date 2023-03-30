@@ -40,16 +40,16 @@ class Authors(Resource):
         )
 
         return response 
-    def post(self):
+
+    def post(self):        
         new_author = Author(
-            title= request.get_json()['title'],
-            price = request.get_json()['price'],
-            isbn = request.get_json()['isbn'],
-            likes = request.get_json()['likes']
+            full_name= request.get_json()['full_name'],
+            biography = request.get_json()['biography'],
+            author_image = request.get_json()['author_image']
         )
         db.session.add(new_author)
         db.session.commit()
-
+        print(new_author)
         response = make_response(
             jsonify(new_author.to_dict()),
             201
@@ -152,15 +152,21 @@ class Books(Resource):
         return response 
 
     def post(self):
+        # author =  Author.query.filter_by(full_name = request.get_json()['author']).first()    
+        fields = request.get_json()
+        print(fields)
+        genre =  Genre.query.filter_by(genre = request.get_json()['genre']).first()
         new_book = Book(
             title= request.get_json()['title'],
             price = request.get_json()['price'],
             isbn = request.get_json()['isbn'],
-            image = request.get_json()['image']
+            image = request.get_json()['image'],
+            genre_id = genre.id,
+            author_id = request.get_json()['author_id']
         )
         db.session.add(new_book)
         db.session.commit()
-
+        print(new_book)
         response = make_response(
             jsonify(new_book.to_dict()),
             201

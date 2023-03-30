@@ -4,10 +4,6 @@ import {NavLink} from "react-router-dom";
 function Header() {
     return(
     <header>
-        <div>
-            <h1> Header</h1>
-        </div>
-
         <div classname = 'nav'>
         <nav>
             <div className="Route Buttons">
@@ -27,9 +23,14 @@ function Header() {
             <span>Submit</span>
             </NavLink>
             </div>
+    
         </nav>
 
         </div>
+        {/* <div>
+            <h1>Welcome to Better Reads</h1>
+        </div> */}
+
     </header>
     )
 }

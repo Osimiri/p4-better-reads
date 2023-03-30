@@ -19,7 +19,7 @@ function App() {
   const [users, setUsers] = useState([]);
   const [genres, setGenres] = useState([]);
 
-  // console.log(genres)
+  console.log(genres)
   // console.log(users)
 
   useEffect(() => {
@@ -48,19 +48,27 @@ function App() {
   
   // const usersLikedBooks = users.liked_books?.map((book) => book)
   // console.log(usersLikedBooks);
+  function handleNewBook(newBook) {
+    setBooks([...books, newBook]);
+    // console.log(newPost);
+  }
 
+  function handleNewAuthor(newAuthor) {
+    setAuthors([...authors, newAuthor]);
+  }
 
+    
   return(
       <div className="App">
       <Header />
-        <h1>Welcome to Better Reads</h1>
+        {/* <h1>Welcome to Better Reads</h1> */}
 
         <Routes>
           <Route path="/" element={<Home />} /> 
           <Route path="/books" element={<BookPage genre = {genres} books = {books} />} /> 
           <Route path="/authors" element={<AuthorPage authors = {authors}/>} /> 
           <Route path="/profile" element={<Profile users = {users} />} />
-          <Route path="/submit" element={<Submit genres = {genres} />} />
+          <Route path="/submit" element={<Submit handleNewBook = {handleNewBook} handleNewAuthor ={handleNewAuthor} authors = {authors} genres = {genres}/>} />
 
         </Routes>
 

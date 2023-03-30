@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 
+
 function Home() {
   // Code goes here!
 const [bookArray, setBookArray] = useState([])
@@ -12,11 +13,13 @@ useEffect(() => {
 []);
     return (
         <section>
-            <h2>Better Reads</h2>
+          {/* <div className = "header">
+            <img className ="logo" src = "Better.jpg" alt = "logo" />
+        </div> */}
+          <h1>Welcome to Better Reads</h1>
         </section>
 
     )
-       
 }
 
 export default Home;
