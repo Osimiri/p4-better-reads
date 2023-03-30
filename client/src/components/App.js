@@ -67,7 +67,7 @@ function App() {
           <Route path="/" element={<Home />} /> 
           <Route path="/books" element={<BookPage genre = {genres} books = {books} />} /> 
           <Route path="/authors" element={<AuthorPage authors = {authors}/>} /> 
-          <Route path="/profile" element={<Profile users = {users} />} />
+          {/* <Route path="/profile" element={<Profile users = {users} />} /> */}
           <Route path="/submit" element={<Submit handleNewBook = {handleNewBook} handleNewAuthor ={handleNewAuthor} authors = {authors} genres = {genres}/>} />
 
         </Routes>

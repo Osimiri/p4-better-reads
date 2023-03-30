@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 function Header() {
     return(
     <header>
-        <div classname = 'nav'>
+        <div classname = 'nav'style={{ margin: "0 auto" }}>
         <nav>
             <div className="Route Buttons">
             <NavLink exact to="/" activeClassName="active-nav-link" className="nav-btn">
@@ -16,9 +16,9 @@ function Header() {
             <NavLink exact to="/authors" activeClassName="active-nav-link" className="nav-btn">
             <span>Authors</span>
             </NavLink>
-            <NavLink exact to="/profile" activeClassName="active-nav-link" className="nav-btn">
+            {/* <NavLink exact to="/profile" activeClassName="active-nav-link" className="nav-btn">
             <span>Profile</span>
-            </NavLink>
+            </NavLink> */}
             <NavLink exact to="/submit" activeClassName="active-nav-link" className="nav-btn">
             <span>Submit</span>
             </NavLink>
