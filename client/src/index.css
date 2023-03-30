@@ -1,4 +1,4 @@
-ody {
+body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
       "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -70,9 +70,10 @@ ody {
     border-radius: 8px;
   }
   
-  form {
+  /* form {
     display: flex;
     gap: 8px;
-  }
+  } */
 
   
+

@@ -156,7 +156,7 @@ class Books(Resource):
             title= request.get_json()['title'],
             price = request.get_json()['price'],
             isbn = request.get_json()['isbn'],
-            likes = request.get_json()['likes']
+            image = request.get_json()['image']
         )
         db.session.add(new_book)
         db.session.commit()
@@ -166,6 +166,21 @@ class Books(Resource):
             201
         )
         return response
+    
+    def delete(self, id):
+        book = Book.query.filter_by(id=id).first()
+        if not book:
+            return make_response(
+                jsonify({'error': 'Book not found'}),
+                404
+            )
+        db.session.delete(book)
+        db.session.commit()
+
+        return make_response(
+            jsonify({'message': 'Book successfully deleted'}),
+            204
+        )
 
 api.add_resource(Books, '/books') #recursion error 
 
