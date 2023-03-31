@@ -71,7 +71,9 @@ function Book({ title, price, likes, genre, author, image, author_image, id, boo
   <Card style={{height: "750px", padding: "15px"}} centered raised className="card-container" >
     {showFront ? (
       <>
-        <Image className="card-image" src={image} alt={title} onClick={toggleCard} />
+        <div className = "BookFlic">
+          <Image className="card-image" src={image} alt={title} onClick={toggleCard} />
+        </div>
         <Card.Content style={{height: "100px", width: 'auto'}}>
           <Card.Header >{title}</Card.Header>
           <Card.Meta>
@@ -113,7 +115,7 @@ function Book({ title, price, likes, genre, author, image, author_image, id, boo
       </>
     ) : (
       <>
-        <Image className="card-image" onClick={toggleCard} src = {author_image} />
+        <Image className="author-card-image" onClick={toggleCard} src = {author_image} />
         <Card.Content style={{height: "100px"}}>
           <Card.Header>{author}</Card.Header>
           <Card.Description ></Card.Description>

@@ -10,7 +10,7 @@ function Author({full_name, biography, author_image}) {
             <Image centered bordered size = 'medium' src={author_image} />
             
         </Grid.Column>
-        <Grid.Column centered verticalAlign = "middle">
+        <Grid.Column centered verticalAlign = "middle" style={{ paddingRight: '300px' }}  >
             <Header>{full_name}</Header>
             
             <p>{biography}</p>

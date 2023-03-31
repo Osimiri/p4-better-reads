@@ -1,11 +1,12 @@
 // Form file 
 import React, { useState } from "react";
 import { Form } from "semantic-ui-react";
+import { useNavigate } from "react-router-dom";
 // import { Formik, Form } from "formik";
 
 
-function Submit({handleNewBook, handleNewAuthor, authors, genres}) {
-  
+function Submit({handleNewBook, handleNewAuthor, authors, genres, setBooks, books}) {
+  const navigate = useNavigate();
   const [genre, setGenreForm] = useState('');
   function handleGenre(e) {
     setGenreForm(e.target.textContent);
@@ -14,10 +15,7 @@ function Submit({handleNewBook, handleNewAuthor, authors, genres}) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // console.log(e.target.title.value)
-    // console.log(e.target.image.value)
-    // console.log(e.target.Description.value)
-    // console.log(e.target.category)
+  
     const newBook = {
       title: e.target.title.value ,
       genre: genre,
@@ -27,7 +25,7 @@ function Submit({handleNewBook, handleNewAuthor, authors, genres}) {
       image: e.target.image.value,
       likes: 0
     };
-
+  
     const newAuthor = {
         full_name: e.target.Author.value,
         biography: e.target.biography.value,
@@ -37,20 +35,24 @@ function Submit({handleNewBook, handleNewAuthor, authors, genres}) {
     const authorExists = authors.find(author => author.full_name === newAuthor.full_name)
     
     if (authorExists) {
-        authorExists.books.push(newBook)
-        handleNewBook(newBook)
-
+        authorExists.books.push(newBook);
+        handleNewBook(newBook);
+  
         fetch("/books", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newBook),
           })
-            .then((res) => res.json())
-
+          .then((res) => res.json())
+          .then(() => {
+            setBooks([...books, newBook]);
+            alert('Woah you added a book sheeeeeeeeeeeeeeesh')
+          });
+  
     } else {
-        newAuthor.books = [newBook]
-        handleNewAuthor(newAuthor)
-        console.log('creating new author')
+        newAuthor.books = [newBook];
+        handleNewAuthor(newAuthor);
+  
         fetch("/authors", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -58,7 +60,6 @@ function Submit({handleNewBook, handleNewAuthor, authors, genres}) {
         })
         .then((res) => res.json())
         .then((author) => {
-            console.log('New Author', author)
             fetch("/books", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -68,35 +69,100 @@ function Submit({handleNewBook, handleNewAuthor, authors, genres}) {
                 }),
               })
                 .then((res) => res.json())
-        })
-
-
+                .then(() => {
+                  setBooks([...books, newBook]);
+                  alert('Woah you added a book sheeeeeeeeeeeeeeesh')
+                });
+        });
     }
-
+  
+    navigate('/books', { forceRefresh: true });
     e.target.reset();
-    // handleNewBook(newBook);
-
-    console.log(newBook)
-    fetch("/books", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(newBook),
-    })
-      .then((res) => res.json())
-
-    
-    // console.log(JSON.stringify(newAuthor))
   }
+  // function handleSubmit(e) {
+  //   e.preventDefault();
+  //   // console.log(e.target.title.value)
+  //   // console.log(e.target.image.value)
+  //   // console.log(e.target.Description.value)
+  //   // console.log(e.target.category)
+  //   const newBook = {
+  //     title: e.target.title.value ,
+  //     genre: genre,
+  //     isbn: e.target.isbn.value ,
+  //     author: e.target.Author.value,
+  //     price: e.target.price.value,
+  //     image: e.target.image.value,
+  //     likes: 0
+  //   };
 
-  // const formik = useFormik({
-  //   title: '',
-  //   author:'', 
-  //   isbn: '',
-  //   genre: '',
-  //   image_url: ""
+  //   const newAuthor = {
+  //       full_name: e.target.Author.value,
+  //       biography: e.target.biography.value,
+  //       author_image:  e.target.author_image.value
+  //   };
+    
+  //   const authorExists = authors.find(author => author.full_name === newAuthor.full_name)
+    
+  //   if (authorExists) {
+  //       authorExists.books.push(newBook)
+  //       handleNewBook(newBook)
 
-  // })
+  //       fetch("/books", {
+  //           method: "POST",
+  //           headers: { "Content-Type": "application/json" },
+  //           body: JSON.stringify(newBook),
+  //         })
+  //           .then((res) => res.json())
+  //           .then(() => {
+  //             navigate('/books');
+  //             alert('Woah you added a book sheeeeeeeeeeeeeeesh')
+  //           })
+            
 
+  //   } else {
+  //       newAuthor.books = [newBook]
+  //       handleNewAuthor(newAuthor)
+  //       console.log('creating new author')
+  //       fetch("/authors", {
+  //           method: "POST",
+  //           headers: { "Content-Type": "application/json" },
+  //           body: JSON.stringify(newAuthor),
+  //       })
+  //       .then((res) => res.json())
+  //       .then((author) => {
+  //           console.log('New Author', author)
+  //           fetch("/books", {
+  //               method: "POST",
+  //               headers: { "Content-Type": "application/json" },
+  //               body: JSON.stringify({
+  //                   ...newBook,
+  //                   author_id: author.id
+  //               }),
+  //             })
+  //               .then((res) => res.json())         
+  //       })
+        
+  //       navigate('/books');
+
+  //   }
+
+  //   e.target.reset();
+  //   // handleNewBook(newBook);
+
+  //   console.log(newBook)
+  //   fetch("/books", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(newBook),
+  //   })
+  //     .then((res) => res.json())
+  //     .then(() => {
+  //       navigate('/books');
+  //       alert('Woah you added a book sheeeeeeeeeeeeeeesh')
+  //     })
+  //     // console.log(JSON.stringify(newAuthor))
+  //   }
+  
   const genreOptions = [
     // {genres}
     { key: "drama", text: "Drama", value: "drama" },
@@ -164,7 +230,6 @@ function Submit({handleNewBook, handleNewAuthor, authors, genres}) {
             label="Genre"
             placeholder="figure it out you little idiot"
             name="genre"
-            multiple
             options= {genreOptions}
             onChange={handleGenre}
           />
