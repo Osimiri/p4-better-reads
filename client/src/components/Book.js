@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { Card, Image, Button, Header } from "semantic-ui-react";
+import { Card, Image, Button, Header, Icon, Label } from "semantic-ui-react";
 import Author from "./Author";
 
 function Book({ title, price, likes, genre, author, image, author_image, id, book, books,setBooks }) {
@@ -68,43 +68,83 @@ function Book({ title, price, likes, genre, author, image, author_image, id, boo
   };
 
   return (
-  <Card centered raised className="card-container" >
+  <Card style={{height: "750px", padding: "15px"}} centered raised className="card-container" >
     {showFront ? (
       <>
-        <Image src={image} alt={title} onClick={toggleCard} />
-        <Card.Content>
-          <Card.Header>{title}</Card.Header>
+        <Image className="card-image" src={image} alt={title} onClick={toggleCard} />
+        <Card.Content style={{height: "100px", width: 'auto'}}>
+          <Card.Header >{title}</Card.Header>
           <Card.Meta>
             <span className="date">Price: ${price}</span>
-        </Card.Meta>
-        <Card.Description>
-          <p>Likes: {likes}</p>
-          {genre && <p>Genre: {genre}</p>}
-          <p>Author: {author}</p>
-        </Card.Description>
-        <Button 
-          className="button"
-          attached = 'left' 
-          color="brown" 
-          onClick={handleLike}
-          >
-          Like
-        </Button>
-        <Button 
-          className="button" 
-          attached = 'right'
-          color="brown" 
-          onClick= {handleDelete}
-          >
-          Delete
-        </Button>
+          </Card.Meta>
+          <Card.Description >
+            {/* <p>Likes: {likes}</p> */}
+            {genre && <p>Genre: {genre}</p>}
+            <p>Author: {author}</p>
+          </Card.Description>
         </Card.Content>
+          <Button.Group attached= 'bottom' size = "medium">
+            <Button as="div" labelPosition="right">
+              <Button color="brown" onClick={handleLike}>
+                <Icon name="heart" />
+              </Button>
+              <Label as="a" basic pointing="left">
+                {likes} Likes!
+              </Label>
+            </Button>
+
+            {/* <Button 
+              className="button"
+              attached = 'left' 
+              color="brown" 
+              onClick={handleLike}
+              >
+              Like
+            </Button> */}
+            <Button 
+              className="button" 
+              attached = 'right'
+              color="brown" 
+              onClick= {handleDelete}
+              >
+              Delete
+            </Button>
+          </Button.Group>
       </>
     ) : (
-      <Card.Content>
-        <Image onClick={toggleCard} src = {author_image} />
-        <Header>{author}</Header>
-    </Card.Content>
+      <>
+        <Image className="card-image" onClick={toggleCard} src = {author_image} />
+        <Card.Content style={{height: "100px"}}>
+          <Card.Header>{author}</Card.Header>
+          <Card.Description ></Card.Description>
+        </Card.Content>
+          <Button.Group attached= 'bottom' size = "medium" >
+            <Button as="div" labelPosition="right">
+              <Button color="brown" onClick={handleLike}>
+                <Icon name="heart" />
+              </Button>
+              <Label as="a" basic pointing="left">
+                {likes} Likes!
+              </Label>
+            </Button>
+            {/* <Button 
+              className="button"
+              attached = 'left' 
+              color="brown" 
+              onClick={handleLike}
+              >
+              Like
+            </Button> */}
+            <Button 
+              className="button" 
+              attached = 'right'
+              color="brown" 
+              onClick= {handleDelete}
+              >
+              Delete
+            </Button>
+          </Button.Group>
+      </>
   )}
 </Card>
 );
